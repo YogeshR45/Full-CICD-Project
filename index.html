@@ -2,227 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Wizarding World</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <title>The Baker Street Case File</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET ===== */
+    :root {
+      --paper: #f4f1ec;
+      --ink: #1c1c1c;
+      --brass: #9c7c38;
+      --oxblood: #5a1f1f;
+      --shadow: rgba(0,0,0,0.15);
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      font-family: "Georgia", "Times New Roman", serif;
-      background: #0b0b0e;
-      color: #e6e2d8;
-      overflow-x: hidden;
-    }
-
-    /* ===== GLOBAL ATMOSPHERE ===== */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255, 215, 160, 0.06), transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(120, 170, 255, 0.05), transparent 55%),
-        linear-gradient(180deg, #050508, #0b0b0e 40%, #050508);
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
+    body {
+      margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 6rem 2rem;
+      background:
+        radial-gradient(circle at top, #faf7f2, #e9e4dc),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0,0,0,0.02),
+          rgba(0,0,0,0.02) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      font-family: "Libre Baskerville", serif;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .case-file {
+      width: 900px;
+      background: var(--paper);
+      border: 2px solid var(--brass);
+      box-shadow:
+        0 20px 40px var(--shadow),
+        inset 0 0 0 1px rgba(0,0,0,0.05);
+      padding: 40px 50px;
       position: relative;
     }
 
-    .hero-content {
-      max-width: 1100px;
-      width: 100%;
-      text-align: center;
+    .case-file::before {
+      content: "221B";
+      position: absolute;
+      top: -18px;
+      right: 40px;
+      background: var(--paper);
+      border: 2px solid var(--brass);
+      padding: 6px 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 14px;
     }
 
-    .sigil {
-      letter-spacing: 0.35em;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: #9c8f70;
-      margin-bottom: 1.5rem;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--brass);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
     }
 
-    .title {
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      text-shadow:
-        0 0 20px rgba(255, 215, 160, 0.12),
-        0 0 60px rgba(120, 170, 255, 0.08);
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin: 0;
+      letter-spacing: 1px;
     }
 
     .subtitle {
-      max-width: 720px;
-      margin: 0 auto 3rem;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #c9c4b8;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oxblood);
     }
 
-    /* ===== POSTER GRID ===== */
-    .posters {
+    .seal {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid var(--oxblood);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--oxblood);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    .content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.5rem;
-      margin-top: 4rem;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
     }
 
-    .poster {
-      position: relative;
-      padding: 2.5rem 2rem 3rem;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.6)),
-        radial-gradient(circle at top, rgba(255, 215, 160, 0.08), transparent 60%);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(4px);
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.7),
-        inset 0 0 60px rgba(255,255,255,0.02);
-      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    .analysis h2,
+    .evidence h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--brass);
+      padding-bottom: 6px;
     }
 
-    .poster:hover {
-      transform: translateY(-10px);
-      box-shadow:
-        0 50px 120px rgba(0,0,0,0.9),
-        inset 0 0 80px rgba(255,255,255,0.04);
-    }
-
-    .poster::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          120deg,
-          transparent 40%,
-          rgba(255,255,255,0.12),
-          transparent 60%
-        );
-      opacity: 0.25;
-      pointer-events: none;
-    }
-
-    .poster-title {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.04em;
-    }
-
-    .poster-text {
-      font-size: 0.95rem;
+    .analysis p {
       line-height: 1.7;
-      color: #bdb7aa;
+      margin-bottom: 16px;
     }
 
-    /* ===== FOOTER ===== */
+    .evidence ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .evidence li {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+
+    .evidence li span {
+      color: var(--oxblood);
+      font-weight: 600;
+    }
+
     footer {
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      color: #7c7463;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--brass);
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      letter-spacing: 1px;
     }
 
-    /* ===== RESPONSIVE FINESSE ===== */
-    @media (max-width: 600px) {
-      .title {
-        letter-spacing: 0.02em;
-      }
-      .sigil {
-        letter-spacing: 0.25em;
-      }
+    .signature {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
     }
   </style>
 </head>
-
 <body>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="sigil">THE WIZARDING WORLD</div>
-
-      <h1 class="title">
-        Harry Potter
-      </h1>
-
-      <p class="subtitle">
-        A legacy written in prophecy, forged in loss, and sealed by magic.
-        This is not a children’s tale — it is a chronicle of power, choice,
-        and the cost of destiny.
-      </p>
-
-      <div class="posters">
-        <div class="poster">
-          <h2 class="poster-title">The Boy Who Lived</h2>
-          <p class="poster-text">
-            Marked by death before memory, shaped by neglect,
-            and driven by a destiny he never asked for.
-          </p>
-        </div>
-
-        <div class="poster">
-          <h2 class="poster-title">Hogwarts</h2>
-          <p class="poster-text">
-            A fortress of wonder and fear, where knowledge is power
-            and innocence rarely survives graduation.
-          </p>
-        </div>
-
-        <div class="poster">
-          <h2 class="poster-title">The Dark Lord</h2>
-          <p class="poster-text">
-            Immortality pursued through division of the soul,
-            leaving behind nothing human — only terror.
-          </p>
-        </div>
-
-        <div class="poster">
-          <h2 class="poster-title">The Final Choice</h2>
-          <p class="poster-text">
-            Not prophecy, not blood, not wand —
-            but the courage to stand when walking away is easier.
-          </p>
-        </div>
+  <section class="case-file">
+    <header>
+      <div>
+        <h1>The Baker Street Case</h1>
+        <div class="subtitle">Confidential Investigation Record</div>
       </div>
-    </div>
-  </section>
+      <div class="seal">SH</div>
+    </header>
 
-  <footer>
-    MAGIC • SACRIFICE • DESTINY
-  </footer>
+    <div class="content">
+      <div class="analysis">
+        <h2>Deductive Analysis</h2>
+        <p>
+          When one has eliminated the impossible, whatever remains—however improbable—
+          must be the truth. The circumstances surrounding this case suggest a mind of
+          careful calculation rather than chance or impulse.
+        </p>
+        <p>
+          Observe the details most overlook: the pattern, the timing, the motive concealed
+          beneath routine behavior. These are the fingerprints of intellect.
+        </p>
+      </div>
+
+      <aside class="evidence">
+        <h2>Collected Evidence</h2>
+        <ul>
+          <li><span>01.</span> Correspondence marked “urgent”</li>
+          <li><span>02.</span> Mud traces from an unfamiliar street</li>
+          <li><span>03.</span> Watch stopped precisely at 9:17</li>
+          <li><span>04.</span> Tobacco ash of foreign origin</li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>
+      <div>Date Logged: 14 November 1891</div>
+      <div class="signature">— S. Holmes</div>
+    </footer>
+  </section>
 
 </body>
 </html>
-

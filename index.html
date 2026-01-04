@@ -1,120 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Simple HTML + CSS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>The Baker Street Case File</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f1ec;
+      --ink: #1c1c1c;
+      --brass: #9c7c38;
+      --oxblood: #5a1f1f;
+      --shadow: rgba(0,0,0,0.15);
+    }
 
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: #f4f6f8;
-            color: #333;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #faf7f2, #e9e4dc),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0,0,0,0.02),
+          rgba(0,0,0,0.02) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      font-family: "Libre Baskerville", serif;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
 
-        header {
-            background-color: #1f2937;
-            color: #fff;
-            padding: 16px;
-            text-align: center;
-        }
+    .case-file {
+      width: 900px;
+      background: var(--paper);
+      border: 2px solid var(--brass);
+      box-shadow:
+        0 20px 40px var(--shadow),
+        inset 0 0 0 1px rgba(0,0,0,0.05);
+      padding: 40px 50px;
+      position: relative;
+    }
 
-        nav {
-            background-color: #111827;
-            padding: 10px;
-            text-align: center;
-        }
+    .case-file::before {
+      content: "221B";
+      position: absolute;
+      top: -18px;
+      right: 40px;
+      background: var(--paper);
+      border: 2px solid var(--brass);
+      padding: 6px 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
 
-        nav a {
-            color: #9ca3af;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--brass);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
 
-        nav a:hover {
-            color: #ffffff;
-        }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-        }
+    .subtitle {
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oxblood);
+    }
 
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
-        }
+    .seal {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid var(--oxblood);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--oxblood);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+    }
 
-        .card h2 {
-            margin-bottom: 10px;
-            color: #111827;
-        }
+    .content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
 
-        .card p {
-            line-height: 1.6;
-        }
+    .analysis h2,
+    .evidence h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--brass);
+      padding-bottom: 6px;
+    }
 
-        footer {
-            background-color: #1f2937;
-            color: #9ca3af;
-            text-align: center;
-            padding: 14px;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-    </style>
+    .analysis p {
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .evidence ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .evidence li {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+
+    .evidence li span {
+      color: var(--oxblood);
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--brass);
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .signature {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+    }
+  </style>
 </head>
-
 <body>
 
+  <section class="case-file">
     <header>
-        <h1>My Simple Web Page</h1>
-        <p>HTML + CSS | Single File</p>
+      <div>
+        <h1>The Baker Street Case</h1>
+        <div class="subtitle">Confidential Investigation Record</div>
+      </div>
+      <div class="seal">SH</div>
     </header>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </nav>
+    <div class="content">
+      <div class="analysis">
+        <h2>Deductive Analysis</h2>
+        <p>
+          When one has eliminated the impossible, whatever remains—however improbable—
+          must be the truth. The circumstances surrounding this case suggest a mind of
+          careful calculation rather than chance or impulse.
+        </p>
+        <p>
+          Observe the details most overlook: the pattern, the timing, the motive concealed
+          beneath routine behavior. These are the fingerprints of intellect.
+        </p>
+      </div>
 
-    <div class="container">
-        <div class="card">
-            <h2>Welcome</h2>
-            <p>
-                This is a clean, minimal HTML and CSS setup using a single
-                <strong>index.html</strong> file. No libraries, no frameworks,
-                no clutter.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>Why this layout?</h2>
-            <p>
-                It’s readable, scalable, and interview-safe. You can easily
-                convert this into a React component, a landing page, or a
-                dashboard UI later.
-            </p>
-        </div>
+      <aside class="evidence">
+        <h2>Collected Evidence</h2>
+        <ul>
+          <li><span>01.</span> Correspondence marked “urgent”</li>
+          <li><span>02.</span> Mud traces from an unfamiliar street</li>
+          <li><span>03.</span> Watch stopped precisely at 9:17</li>
+          <li><span>04.</span> Tobacco ash of foreign origin</li>
+        </ul>
+      </aside>
     </div>
 
     <footer>
-        © 2026 | Simple HTML Template
+      <div>Date Logged: 14 November 1891</div>
+      <div class="signature">— S. Holmes</div>
     </footer>
+  </section>
 
 </body>
 </html>
-

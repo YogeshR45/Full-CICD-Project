@@ -18,9 +18,7 @@ This mirrors real-world production-grade CI/CD and Kubernetes separation.
 📸 **Architecture Diagram Placeholder**
 Place the architecture diagram image here:
 
-```
-snaps/architecture.png
-```
+<img src="./snaps/architecture.png" />
 
 ---
 
@@ -182,9 +180,7 @@ Purpose:
 
 📸 **Screenshot Placeholder**
 
-```
-snaps/github-webhook.png
-```
+<img src="./snaps/github-webhook.png" />
 
 ---
 
@@ -194,10 +190,9 @@ Jenkins clones the repository using a **GitHub Personal Access Token (PAT)**.
 
 📸 **Screenshot Placeholder**
 
-```
-snaps/jenkins-login.png
-snaps/jenkins-checkout.png
-```
+
+<img src="./snaps/jenkins-login.png" />
+<img src="./snaps/jenkins-checkout.png" />
 
 ---
 
@@ -233,6 +228,10 @@ Credential:
 ### 5. Docker Image Push
 
 The built image is pushed to DockerHub.
+
+📸 **Screenshot Placeholder**
+
+<img src="./snaps/dockerhub-image.png" />
 
 ---
 
@@ -270,9 +269,8 @@ Configured credentials:
 
 📸 **Screenshot Placeholder**
 
-```
-snaps/jenkins-credentials.png
-```
+
+<img src="./snaps/jenkins-credentials.png" />
 
 ---
 
@@ -288,9 +286,8 @@ Required plugins (example set):
 
 📸 **Screenshot Placeholder**
 
-```
-snaps/jenkins-plugins.png
-```
+<img src="./snaps/jenkins-plugins.png" />
+
 
 ---
 
@@ -306,10 +303,8 @@ http://<K3S_NODE_PUBLIC_IP>:<NODEPORT>
 
 📸 **Screenshot Placeholders**
 
-```
-snaps/k3s-pods.png
-snaps/browser-nodeport.png
-```
+<img src="./snaps/k3s-pods.png" />
+<img src="./snaps/browser-nodeport.png" />
 
 ---
 
@@ -336,3 +331,4 @@ This project demonstrates:
 * No manual steps after initial setup
 * Reproducible and interview-ready
 * Clean separation of CI and cluster responsibilities
+

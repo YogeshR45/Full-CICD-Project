@@ -195,8 +195,8 @@ Jenkins clones the repository using a **GitHub Personal Access Token (PAT)**.
 📸 **Screenshot Placeholder**
 
 ```
-snaps/jenkins-login.png
-snaps/jenkins-checkout.png
+<img src="./snaps/jenkins-login.png" />
+<img src="./snaps/jenkins-checkout.png" />
 ```
 
 ---
